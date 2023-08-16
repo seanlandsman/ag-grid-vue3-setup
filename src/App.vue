@@ -5,9 +5,9 @@
       :columnDefs="columnDefs.value"
       :rowData="rowData.value"
       :defaultColDef="defaultColDef"
-      :frameworkComponents="frameworkComponents"
       rowSelection="multiple"
       animateRows="true"
+      :gridOptions = gridOptions
   >
   </ag-grid-vue>
 </template>
@@ -26,7 +26,7 @@ const columnDefs = reactive({
   value: [
     {field: "make"},
     {field: "model"},
-    {field: "price", cellRendererFramework: 'MyComponent'}
+    {field: "price", cellRenderer: 'MyComponent'}
   ],
 });
 
@@ -34,9 +34,12 @@ const defaultColDef = {
   flex: 1
 };
 
-const frameworkComponents = {
-  MyComponent
+const gridOptions = {
+  components: {
+    MyComponent
+  }
 }
+
 
 // Example load data from sever
 onMounted(() => {
